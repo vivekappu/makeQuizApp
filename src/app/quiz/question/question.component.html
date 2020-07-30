@@ -45,10 +45,11 @@
         <mat-label>points</mat-label>
         <input [(ngModel)]="questionCopy.points"  name="points" matInput placeholder="points " (focus)="clearMessages()" value="" required>
       </mat-form-field>
+      <div id="error"></div>
+      <div id="success"></div>
     </form>
     </mat-card-content>
-  <div id="error"></div>
-  <div id="success"></div>
+
   <mat-card-actions >
     <button mat-raised-button color="primary" *ngIf="!questionCopy._id" [disabled]="form.invalid" (click)="post()">ADD</button>
     <button mat-raised-button color="primary" *ngIf="questionCopy._id" [disabled]="form.invalid" (click)="update()">update</button>
