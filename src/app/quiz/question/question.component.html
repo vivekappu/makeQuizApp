@@ -1,0 +1,62 @@
+
+<div>
+  <h4>Quiz </h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Quiz</mat-label>
+    <mat-select [formControl]="quizControl" [(ngModel)]="quiz_id" (selectionChange)="onChange($event)"  required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let quiz of quizzes" [value]="quiz.passCode" >
+        {{quiz.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="quizControl.hasError('required')">Please choose a quiz</mat-error>
+    <mat-hint>select quiz you want to work with</mat-hint>
+  </mat-form-field>
+</div>
+<div *ngIf="quiz_id">
+<mat-card >
+  <mat-card-title>
+    <span *ngIf="questionCopy._id">Edit Question</span>
+    <span *ngIf="!questionCopy._id">New Question</span>
+  </mat-card-title>
+    <mat-card-content>
+    <form id="form" #form="ngForm">
+      <mat-form-field >
+        <mat-label>Question</mat-label>
+        <input [(ngModel)]="questionCopy.title"  name="title" matInput placeholder="Type your Question" value="" (focus)="clearMessages()" required>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>Correct Answer</mat-label>
+        <input [(ngModel)]="questionCopy.correctAnswer"  name="correctAnswer" matInput placeholder="correct answer" (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>wrong answer 1</mat-label>
+        <input [(ngModel)]="questionCopy.option1"  name="option1" matInput placeholder="wrong answer 1" (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>wrong answer 2</mat-label>
+        <input [(ngModel)]="questionCopy.option2"  name="option2" matInput placeholder="wrong answer 2" (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>wrong answer 3</mat-label>
+        <input [(ngModel)]="questionCopy.option3"  name="option3" matInput placeholder="wrong answer 3" (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>points</mat-label>
+        <input [(ngModel)]="questionCopy.points"  name="points" matInput placeholder="points " (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+    </form>
+    </mat-card-content>
+  <div id="error"></div>
+  <div id="success"></div>
+  <mat-card-actions >
+    <button mat-raised-button color="primary" *ngIf="!questionCopy._id" [disabled]="form.invalid" (click)="post()">ADD</button>
+    <button mat-raised-button color="primary" *ngIf="questionCopy._id" [disabled]="form.invalid" (click)="update()">update</button>
+    <button mat-raised-button color="primary" *ngIf="questionCopy._id" [disabled]="form.invalid" (click)="new()">New</button>
+    <button mat-raised-button color="primary" *ngIf="questionCopy._id" [disabled]="form.invalid" (click)="Delete()">Delete</button>
+
+  </mat-card-actions>
+  </mat-card>
+  <app-questions-list (click)="clearMessages()"  [questions]="questions"></app-questions-list>
+</div>
+

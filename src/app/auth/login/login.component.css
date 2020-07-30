@@ -1,0 +1,44 @@
+
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+#form{
+  width:500px;
+}
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#error{
+  color:red;
+}
+#success{
+  color:green;
+}

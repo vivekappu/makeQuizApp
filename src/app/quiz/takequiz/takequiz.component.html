@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-title>Quiz</mat-card-title>
+  <p>
+    <span class="totalpoints">Total points:{{totalPoints}}</span>
+    <span class="fill-remaining-space"></span>
+    <span *ngIf="isTimer" id="timer">Time Remaining : <countdown #countdown  [config]="config" (event)="event($event)" >$!h!:$!m!:$!s!</countdown></span>
+  </p>
+
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let question of questions;let i=index" [expanded]="step ===i" (opened)="setStep(i);" >
+
+    <mat-expansion-panel-header>
+
+      <mat-panel-title>
+        <span>{{i+1}}. {{question.title}}</span>
+        <span class="fill-remaining-space"></span>
+        <span class="points">points:{{question.points}}</span>
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <mat-radio-group  aria-label="Select an option" [(ngModel)]="question.selectedAnswer">
+      <mat-radio-button class="full-width" *ngFor="let option of question.options" [value]="option">{{option}}</mat-radio-button>
+
+    </mat-radio-group>
+    <mat-action-row>
+      <span>
+        <button *ngIf="i!=0" mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button *ngIf="i!=questions.length-1"mat-button color="primary" (click)="nextStep()">Next</button>
+      </span>
+      <span class="fill-remaining-space"></span>
+
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-card-actions>
+  <button mat-raised-button color="warn" (click)="submitQuiz()">Submit Quiz</button>
+  <button mat-raised-button color="primary" (click)="saveQuiz()">Save Quiz</button>
+</mat-card-actions>
+<mat-card-footer>
+  <mat-radio-group aria-label="Select an option" >
+    <label class="container-radio" *ngFor="let question of questions;let i =index"   value="{{i+1}}">{{i+1}}
+      <input type="radio" [checked]="i===this.step"  (change)="setStep(i)"   name="radio">
+      <span class="checkmark " [ngClass]="(question.selectedAnswer==='')?'red':'green'"></span>
+      <span>&nbsp;&nbsp;</span>
+    </label>
+  </mat-radio-group>
+
+
+
+</mat-card-footer>
+
+
+</mat-card>
+<div>
+</div>
+
+
+
+
+

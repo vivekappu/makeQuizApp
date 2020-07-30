@@ -1,0 +1,47 @@
+
+
+.header-image {
+  background-image: url('../../assets/images/quizlogo.webp');
+  background-size: cover;
+}
+mat-card-content{
+  margin:5px;
+  font-size: 1.1em;
+}
+h1{
+  margin-top:10px;
+  font-weight: bold;
+
+}
+
+.card {
+  max-width: 400px;
+}
+
+
+.text{
+  font-size: 1.2em;
+  text-align: justify;
+}
+mat-list-item{
+  margin-left:-15px;
+  font-weight: bold;
+}
+span{
+  font-size:1em;
+  text-align: justify;
+  color:gray;
+}
+.about{
+  font-size:1.2em;
+
+}
+.usage{
+  background-color: #69F0AE;
+}
+.introduction{
+  background-color: #B3E5FC;
+}
+mat-card-title{
+  maring:10px;
+}

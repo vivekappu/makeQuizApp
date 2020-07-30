@@ -1,0 +1,102 @@
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.full-width{
+  width:100%;
+}
+/*-------radio button---------------*/
+.container-radio {
+  display: inline-block ;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container-radio:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-radio input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-radio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-radio .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+/*-----------pink for unselected-----------*/
+.container-radio input ~ .red {
+  background-color:red;
+}
+/*-------------green for selected-----------*/
+.container-radio input ~ .green {
+  background-color: green;
+
+}
+.points{
+  background-color:yellow;
+  padding:5px;
+}
+.totalpoints{
+  background-color: #007fbe;
+  padding:5px;
+  color:white;
+}
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+/*timer*/
+#timer{
+  position: absolute;
+  top:10px;
+  right: 70px;
+  background-color: #2196F3;
+  padding:10px;
+  color:whitesmoke;
+}
+countdown{
+  font-weight: bold;
+}

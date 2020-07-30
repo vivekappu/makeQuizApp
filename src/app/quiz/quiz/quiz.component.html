@@ -1,0 +1,35 @@
+
+<mat-card>
+  <div class="container">
+  <mat-card-title>
+    <span *ngIf="quizCopy._id">Edit Quiz</span>
+    <span *ngIf="!quizCopy._id">New Quiz</span>
+  </mat-card-title>
+  <mat-card-content>
+    <form id="form" #form="ngForm">
+      <mat-form-field >
+        <mat-label>Quiz Name</mat-label>
+        <input [(ngModel)]="quizCopy.name"  name="name" matInput placeholder="Quiz Name" (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>passCode</mat-label>
+        <input [(ngModel)]="quizCopy.passCode"  name="passCode" matInput placeholder="Quiz secret code" (focus)="clearMessages()" value="" required>
+      </mat-form-field>
+      <mat-form-field *ngIf="chkEnable.checked">
+        <input [(ngModel)]="quizCopy.time"  name="time" matInput placeholder="Enter Quiz duration in minutes" (focus)="clearMessages()" value="" >
+      </mat-form-field>
+      <mat-checkbox  #chkEnable [checked]="quizCopy.time||false" (change)="FieldsChange($event)">Tick to add Timer!</mat-checkbox>
+      <div id="error"></div>
+      <div id="success"></div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" *ngIf="!quizCopy._id" [disabled]="form.invalid" (click)="post()">ADD</button>
+    <button mat-raised-button color="primary" *ngIf="quizCopy._id" [disabled]="form.invalid" (click)="update()">update</button>
+    <button mat-raised-button color="primary" *ngIf="quizCopy._id" [disabled]="form.invalid" (click)="new()">New</button>
+    <button mat-raised-button color="primary" *ngIf="quizCopy._id" [disabled]="form.invalid" (click)="Delete()">Delete</button>
+  </mat-card-actions>
+  </div>
+</mat-card>
+<app-quiz-list (click)="clearMessages()" [quizzes]="quizzes"></app-quiz-list>
+

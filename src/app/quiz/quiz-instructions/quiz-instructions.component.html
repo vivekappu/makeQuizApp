@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-card-title class="text-center">Quiz Instructions</mat-card-title>
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="fit" style="height: 1000px">
+      <mat-grid-tile>
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title class="text-center">Timer</mat-card-title>
+            <mat-card-subtitle>Quiz duration</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="./assets/images/quiztimer.png" alt="Quiz timer">
+          <mat-card-content>
+            <p class="text">
+             At the top right corner of your quiz page you will see the timer if the quiz creater has added time
+              duration of quiz, In case if no time is added you won't see timer and you can take as much time as you want.
+              If the quiz has timer then you must finish the quiz before the expires as your quiz get's automatically submitted when timer expires.
+              The timer is in (hours:minutes:seconds) format .
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title class="text-center">Quiz buttons</mat-card-title>
+            <mat-card-subtitle>save button and submit button</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="./assets/images/save&submitbutton.png"  alt="Quiz buttons">
+          <mat-card-content>
+            <p class="text">
+              At the bottom of your quiz you will see two buttons 1.submit button and 2.save button.<br>
+              <span>Submit button:</span> Submit button should be used when you have finished your quiz<br>
+              <span>Save button:</span>In case to avoid accidental refreshing of page to save your responses so that
+              you don't have to answer again it is advised to press save so that your responses till that point
+              is saved and even if browser refreshes you can start from last saved point.
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title >Quiz points</mat-card-title>
+            <mat-card-subtitle>where you will see points of the quiz</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="./assets/images/points.png"  alt="total points">
+          <img mat-card-image src="./assets/images/individualpoints.png"  alt="each question points">
+          <mat-card-content>
+            <p class="text">
+              At the top left corner you will see the total points of the quiz <br>
+              At the right side corner of each question you will see points for that question<br>
+            </p>
+          </mat-card-content>
+        </mat-card>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title class="text-center">Other tips</mat-card-title>
+            <mat-card-subtitle>How to make use of other features provided</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="./assets/images/quizradiobuttons.png"  alt="Quiz radiobuttons">
+          <mat-card-content>
+            <p class="text">
+              At the bottom of your quiz you will see these radio buttons .<br>
+              It has three color's, 1.red 2.green 3.blue <br>
+              red indicates that you haven't answered that question <br>
+              green indicates that you have answered <br>
+              blue indicates the question you are currently on.
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </mat-card-content>
+  <mat-card-actions>
+
+     <button  layout-align="center center" mat-raised-button color="warn" class="button" (click)="startQuiz()">Start Quiz</button>
+
+
+  </mat-card-actions>
+</mat-card>
+
+

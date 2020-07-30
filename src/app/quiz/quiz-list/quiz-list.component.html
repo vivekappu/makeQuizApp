@@ -1,0 +1,17 @@
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>All Quizzes</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-list *ngFor="let quiz of quizzes ;let i=index;">
+      <mat-list-item  (click)="quizApiService.selectQuiz(quiz)"><span class="quizSelect">{{i+1}}. {{quiz.name}}</span> </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-action-list>
+    </mat-action-list>
+  </mat-card-actions>
+</mat-card>
