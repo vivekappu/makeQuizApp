@@ -49,7 +49,7 @@ app.post('/login', function (req, res) {
                                 },
                                 'vivekkey',
                                 {
-                                    expiresIn: '1hr'
+                                    expiresIn: '2hr'
                                 }
                             )
                             console.log("authsuccessful")
@@ -119,7 +119,7 @@ app.post('/signUp', function (req, res) {
     });
 })
 /*-----------post question--------------*/
-app.post('/addQuestion', function (req, res) {
+app.post('/addQuestion',checkAuth, function (req, res) {
 
     console.log('inside add');
     Quiz.findOne({passCode: req.body.quiz_id}).exec().then(
@@ -158,7 +158,7 @@ app.post('/addQuestion', function (req, res) {
 
 })
 /*-----------------edit question--------------*/
-app.put('/editQuestion', function (req, res) {
+app.put('/editQuestion',checkAuth, function (req, res) {
     console.log('inside edit');
     console.log(req.body);
     Quiz.findOne({passCode: req.body.quiz_id}).exec().then(
@@ -194,7 +194,7 @@ app.put('/editQuestion', function (req, res) {
 
 })
 /*-------------------delete question------------*/
-app.post('/deleteQuestion', function (req, res) {
+app.post('/deleteQuestion',checkAuth, function (req, res) {
     console.log('inside delete question');
     console.log(req.body);
     Quiz.findOne({passCode: req.body.quiz_id}).exec().then(
@@ -230,7 +230,7 @@ app.post('/deleteQuestion', function (req, res) {
 
 })
 /*------------------get questions-------------*/
-app.get('/:quiz_id/questions', function (req, res) {
+app.get('/:quiz_id/questions',checkAuth, function (req, res) {
     console.log('inside getquestions')
     Quiz.findOne({passCode: req.params.quiz_id}).exec().then(
         (data) => {
@@ -482,7 +482,7 @@ app.get('/getQuiz/:passCode', checkAuth, function (req, res) {
     )
 })
 /*-----------take/attempt quiz ----------------*/
-app.get('/takeQuiz/:quiz_id/questions', function (req, res) {
+app.get('/takeQuiz/:quiz_id/questions',checkAuth, function (req, res) {
     console.log('inside take quiz getquestions')
     Quiz.findOne({passCode: req.params.quiz_id}).exec().then(
         (data) => {

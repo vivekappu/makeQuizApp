@@ -1,9 +1,5 @@
 
 
-.header-image {
-  background-image: url('../../assets/images/quizlogo.webp');
-  background-size: cover;
-}
 mat-card-content{
   margin:5px;
   font-size: 1.1em;
@@ -43,5 +39,6 @@ span{
   background-color: #B3E5FC;
 }
 mat-card-title{
+  font-size:2em;
   maring:10px;
 }
