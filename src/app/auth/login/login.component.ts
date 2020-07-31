@@ -1,55 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../shared/services/auth.service";
-import {Router} from "@angular/router";
-import {of, Subscription} from "rxjs";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../shared/services/auth.service';
+import {Router} from '@angular/router';
+import {of, Subscription} from 'rxjs';
 
-import { Injectable } from "@angular/core";
-import { JwtHelperService ,JWT_OPTIONS } from "@auth0/angular-jwt";
-import {delay} from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { JwtHelperService , JWT_OPTIONS } from '@auth0/angular-jwt';
+import {delay} from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LoginComponent implements OnInit {
   token;
   loginForm: FormGroup;
-  tokenSubscription = new Subscription()
+  tokenSubscription = new Subscription();
   submitted = false;
   timeout;
-  constructor(private formBuilder: FormBuilder,private auth:AuthService,private router:Router,private jwtHelper: JwtHelperService) { }
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router, private jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email,Validators.pattern(/^([\w\.\-]+)@([\w\-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/)]],
-      password: ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*])(?=.*[0-9])(?!.*\s).{8,}$/)]]
+      email: ['', [Validators.required, Validators.email, Validators.pattern(/^([\w\.\-]+)@([\w\-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*])(?=.*[0-9])(?!.*\s).{8,}$/)]]
     });
   }
   get f() { return this.loginForm.controls; }
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    console.log('login')
+    console.log('login');
     if (this.loginForm.invalid) {
-      console.log('here')
+      console.log('here');
       return;
     }
 
-    this.auth.login(this.loginForm.value).subscribe(res=> {
-      let token=res['token']
-      let username=res['username'];
+    this.auth.login(this.loginForm.value).subscribe(res => {
+      const token = res.token;
+      const username = res.username;
 
-      this.timeout = this.jwtHelper.getTokenExpirationDate(token).valueOf() - new Date().valueOf()
-      document.getElementById('success').innerText=res["message"];
+      this.timeout = this.jwtHelper.getTokenExpirationDate(token).valueOf() - new Date().valueOf();
+      document.getElementById('success').innerText = res.message;
       console.log(this.timeout);
       this.expirationCounter(this.timeout);
-      setTimeout(()=>this.navigateToHome(token,username),500);
+      setTimeout(() => this.navigateToHome(token, username), 500);
 
-    },(error )=>{document.getElementById('error').innerText= error.error.message});
+    }, (error ) => {document.getElementById('error').innerText = error.error.message; });
   }
 
 
@@ -59,20 +59,20 @@ export class LoginComponent implements OnInit {
       console.log('EXPIRED!!');
 
       this.auth.logoutUser();
-      this.router.navigate(["/login"]);
+      this.router.navigate(['/login']);
     });
   }
-  navigateToHome(token,username){
+  navigateToHome(token, username){
     this.router.navigateByUrl('/').then(
-      ()=> {
+      () => {
         localStorage.setItem('token', token);
-        localStorage.setItem('username',username);
+        localStorage.setItem('username', username);
 
       }
-    )
+    );
   }
   clearError(){
-    document.getElementById('error').innerText='';
+    document.getElementById('error').innerText = '';
   }
 
 }
