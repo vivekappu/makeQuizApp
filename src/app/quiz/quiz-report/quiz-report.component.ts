@@ -1,15 +1,15 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {QuizApiService} from "../../shared/services/quiz-api.service";
-import {FormControl, Validators} from "@angular/forms";
+import {QuizApiService} from '../../shared/services/quiz-api.service';
+import {FormControl, Validators} from '@angular/forms';
 
 export interface UserReport {
   name: string;
   email: string;
   score: number;
 }
-let userReport:UserReport[]=[
+let userReport: UserReport[] = [
 ];
 
 
@@ -20,13 +20,13 @@ let userReport:UserReport[]=[
 })
 
 export class QuizReportComponent implements OnInit {
-  displayedColumns: string[] = ['name','email','score'];
-  dataSource: MatTableDataSource<UserReport>
+  displayedColumns: string[] = ['name', 'email', 'score'];
+  dataSource: MatTableDataSource<UserReport>;
   quizDetails;
   quizzes;
   quiz_id;
   quizControl = new FormControl('', Validators.required);
-  constructor(private quizApiService:QuizApiService) { }
+  constructor(private quizApiService: QuizApiService) { }
 
   @ViewChild(MatSort) sort: MatSort;
   loadQuizzes(){
@@ -34,49 +34,48 @@ export class QuizReportComponent implements OnInit {
   }
   getQuizzes(){
     this.quizApiService.getQuizzes().subscribe(
-      res=>{
-        this.quizzes=res['quizzes']
+      res => {
+        this.quizzes = res.quizzes;
       }
-    )
+    );
   }
   ngOnInit() {
-    this.loadQuizzes()
-    this.dataSource.sort = this.sort;
+    this.loadQuizzes();
     this.quizApiService.QuizzesSynced.subscribe(
-      quizzes=>
+      quizzes =>
       {
-        this.quizzes=quizzes;
+        this.quizzes = quizzes;
         console.log(quizzes);
       }
-    )
+    );
   }
   getQuizDetails(){
-    this.quizDetails=this.quiz_id;
+    this.quizDetails = this.quiz_id;
     this.quizApiService.getQuizDetails(this.quizDetails.passCode).subscribe(
-      (res)=>{
-        console.log(res['quizDetails']);
-        this.quizDetails=res['quizDetails'];
+      (res) => {
+        console.log(res.quizDetails);
+        this.quizDetails = res.quizDetails;
         this.quizDetails.Students.forEach(
 
-          user=>{
+          user => {
             userReport.push(
               {
-                'name':user.name,
-                'email':user.email,
-                'score':user.score
+                name: user.name,
+                email: user.email,
+                score: user.score
               }
-            )
+            );
           }
-        )
-        this.dataSource=new MatTableDataSource(userReport);
+        );
+        this.dataSource = new MatTableDataSource(userReport);
         this.dataSource.sort = this.sort;
       }
-    )
+    );
   }
 
   onChange($event){
-    userReport=[];
-     this.getQuizDetails();
+    userReport = [];
+    this.getQuizDetails();
     console.log('event trigerred');
   }
 }
