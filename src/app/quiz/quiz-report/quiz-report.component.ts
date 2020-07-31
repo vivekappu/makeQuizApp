@@ -21,14 +21,14 @@ let userReport:UserReport[]=[
 
 export class QuizReportComponent implements OnInit {
   displayedColumns: string[] = ['name','email','score'];
-  dataSource=new MatTableDataSource(userReport);
+  dataSource: MatTableDataSource<UserReport>
   quizDetails;
   quizzes;
   quiz_id;
   quizControl = new FormControl('', Validators.required);
   constructor(private quizApiService:QuizApiService) { }
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
   loadQuizzes(){
     this.getQuizzes();
   }

@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
     }
 
     this.auth.login(this.loginForm.value).subscribe(res => {
-      const token = res.token;
-      const username = res.username;
+      const token = res['token'];
+      const username = res['username'];
 
       this.timeout = this.jwtHelper.getTokenExpirationDate(token).valueOf() - new Date().valueOf();
-      document.getElementById('success').innerText = res.message;
+      document.getElementById('success').innerText = res['message'];
       console.log(this.timeout);
       this.expirationCounter(this.timeout);
       setTimeout(() => this.navigateToHome(token, username), 500);
@@ -71,6 +71,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  // tslint:disable-next-line:typedef
   clearError(){
     document.getElementById('error').innerText = '';
   }

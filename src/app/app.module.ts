@@ -28,7 +28,7 @@ import { HeaderComponent } from './header/header.component';
 import { QuizEntryComponent } from './quiz/quiz-entry/quiz-entry.component';
 import { QuizInstructionsComponent } from './quiz/quiz-instructions/quiz-instructions.component';
 import { QuizReportComponent } from './quiz/quiz-report/quiz-report.component';
-import {MatSortModule} from '@angular/material/sort';
+import { MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import { CountdownModule } from 'ngx-countdown';
 import { FooterComponent } from './footer/footer.component';
